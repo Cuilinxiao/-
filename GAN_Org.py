@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import numpy as np
-import matplotlib.pyplot as plt
+
 import matplotlib.gridspec as gridspec
 import os
 
@@ -10,12 +10,11 @@ import os
 def variable_init(size):
     in_dim = size[0]
 
-    #计算随机生成变量所服从的正态分布标准差
     w_stddev = 1. / tf.sqrt(in_dim / 2.)
     return tf.random_normal(shape=size, stddev=w_stddev)
 
 
-#定义输入矩阵的占位符，输入层单元为784，None代表批量大小的占位，X代表输入的真实图片。占位符的数值类型为32位浮点型
+#注释定义输入矩阵的占位符，输入层单元为784，None代表批量大小的占位，X代表输入的真实图片。占位符的数值类型为32位浮点型
 X = tf.placeholder(tf.float32, shape=[None, 784])
 
 #定义判别器的权重矩阵和偏置项向量，由此可知判别网络为三层全连接网络
@@ -31,7 +30,7 @@ theta_D = [D_W1, D_W2, D_b1, D_b2]
 Z = tf.placeholder(tf.float32, shape=[None, 100])
 
 #定义生成器的权重与偏置项。输入层为100个神经元且接受随机噪声，
-#输出层为784个神经元，并输出手写字体图片。生成网络根据原论文为三层全连接网络
+#输出层有784个神经元，并输出手写字体图片。生成网络根据原论文为三层全连接网络
 G_W1 = tf.Variable(variable_init([100, 128]))
 G_b1 = tf.Variable(tf.zeros(shape=[128]))
 
